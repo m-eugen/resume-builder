@@ -11,7 +11,7 @@ export default function Hero({
     <div className="flex flex-col items-center justify-center">
       <div className="flex items-center justify-center">
         <Image
-          src={'https://illustrations.popsy.co/blue/web-design.svg'}
+          src={'https://illustrations.popsy.co/violet/web-design.svg'}
           alt="Resume Builder"
           width={300}
           height={300}
