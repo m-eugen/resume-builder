@@ -3,6 +3,9 @@ import 'server-only'
 import { GitHubRepo, GitHubUser } from './types'
 
 export async function getUser(username: string): Promise<GitHubUser | null> {
+  if (!process.env.NEXT_PUBLIC_GITHUB_TOKEN) {
+    throw new Error('NEXT_PUBLIC_GITHUB_TOKEN is not set')
+  }
   try {
     const res = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
