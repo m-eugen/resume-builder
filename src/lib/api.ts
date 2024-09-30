@@ -1,26 +1,26 @@
-import 'server-only'
+import "server-only";
 
-import { GitHubRepo, GitHubUser } from './types'
+import { GitHubRepo, GitHubUser } from "./types";
 
 export async function getUser(username: string): Promise<GitHubUser | null> {
   if (!process.env.NEXT_PUBLIC_GITHUB_TOKEN) {
-    throw new Error('NEXT_PUBLIC_GITHUB_TOKEN is not set')
+    throw new Error("NEXT_PUBLIC_GITHUB_TOKEN is not set");
   }
   try {
     const res = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
       },
-    })
+    });
 
     if (res.status === 404) {
-      return null
+      return null;
     }
 
-    return res.json()
+    return res.json();
   } catch (error) {
-    console.error(error)
-    return null
+    console.error(error);
+    return null;
   }
 }
 
@@ -30,10 +30,12 @@ export async function getUserRepos(username: string): Promise<GitHubRepo[]> {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
       },
-    })
-    return res.json()
+    });
+    return res.json();
   } catch (error) {
-    console.error(error)
-    return []
+    console.error(error);
+    return [];
   }
 }
+
+// TODO: add getRepo function
